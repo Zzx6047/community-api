@@ -1,11 +1,11 @@
-import mongoose from '@/config/DBHelpler'
+import mongoose from './../config/DBHelpler'
 import moment from 'moment'
 
 
 const Schema = mongoose.Schema
 
 const PostSchema = new Schema({
-    uid: {type:String},
+    uid: {type:String, ref: 'users'},
     title: {type:String},
     content: {type:String},
     created: {type:Date	},
@@ -34,7 +34,14 @@ PostSchema.statics = {
      * @param {Number} limit 分页条数
      */
     getList: function (options, sort, page, limit) {
-        return this.find(options).sort({[sort]: -1}).skip(page * limit).limit(limit)
+        return this.find(options)
+        .sort({[sort]: -1})
+        .skip(page * limit)
+        .limit(limit)
+        .populate({
+            path: 'uid',
+            select: 'name'
+        })
     }
 }
 

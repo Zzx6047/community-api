@@ -31,7 +31,7 @@ class LoginController {
   }
 
   async login(ctx) {
-    debugger
+    // debugger
     // 接收用户的数据
     // 返回token
     const { body } = ctx.request
@@ -50,7 +50,7 @@ class LoginController {
       if (checkUserPasswd) {
         // 验证通过，返回Token数据
         console.log('Hello login')
-        let token = jsonwebtoken.sign({ _id: 'brian' }, config.JWT_SECRET, {
+        let token = jsonwebtoken.sign({ _id: 'zzx' }, config.JWT_SECRET, {
           expiresIn: '1d'
         })
         ctx.body = {

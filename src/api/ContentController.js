@@ -22,6 +22,7 @@ class ContentController {
         })
 
         const tmp = await post.save()
+        console.log('保存成功');
         console.log(tmp)
 
         const sort = body.sort ? body.sort : 'created'

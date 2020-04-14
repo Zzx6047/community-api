@@ -7,7 +7,7 @@ export default (ctx, next) => {
         msg: 'Protected resource, use Authorization header to get access\n'
       }
     } else {
-      debugger
+      // debugger
       ctx.status = err.status || 500
       ctx.body = Object.assign({
         code: 500,

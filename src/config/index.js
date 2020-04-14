@@ -1,8 +1,8 @@
-const DB_URL = '121.36.140.182:27017/testdb'
+const DB_URL = 'mongodb://121.36.140.182:27017/testdb'
 const REDIS = {
   host: '121.36.140.182',
   port: 6379,
-  password: ''
+  // password: ''
 }
 const JWT_SECRET = 'a&*38QthAKuiRwISGLotgq^3%^$zvA3A6Hfr8MF$jM*HY4*dWcwAW&9NGp7*b53!'
 
