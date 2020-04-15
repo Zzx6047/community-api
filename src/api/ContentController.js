@@ -1,29 +1,29 @@
-import Post from '../modle/Post'
+import Post from './../model/Post'
 
 class ContentController {
     async getPostList (ctx) {
         const body = ctx.query
+        console.log('123');
+        // const post = new Post({
+        //     title: 'test title',
+        //     content: 'test content',
+        //     catalog: 'ask',
+        //     fav: 20,
+        //     isEnd: '0',
+        //     reads: '0',
+        //     answer: '0',
+        //     status: '0',
+        //     isTop: '0',
+        //     sort: '0',
+        //     tags: [{
+        //         name: '精华',
+        //         class: ''
+        //     }]
+        // })
 
-        const post = new Post({
-            title: 'test title',
-            content: 'test content',
-            catalog: 'ask',
-            fav: 20,
-            isEnd: '0',
-            reads: '0',
-            answer: '0',
-            status: '0',
-            isTop: '0',
-            sort: '0',
-            tags: [{
-                name: '精华',
-                class: ''
-            }]
-        })
-
-        const tmp = await post.save()
-        console.log('保存成功');
-        console.log(tmp)
+        // const tmp = await post.save()
+        // console.log('保存成功');
+        // console.log(tmp)
 
         const sort = body.sort ? body.sort : 'created'
         const page = body.page ? parseInt(body.page) : 0
