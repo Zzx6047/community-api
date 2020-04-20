@@ -1,4 +1,5 @@
 import send from '@/config/MailConfig'
+import bcrypt from 'bcryptjs'
 import moment from 'dayjs'
 import jsonwebtoken from 'jsonwebtoken'
 import config from '@/config'
@@ -43,18 +44,23 @@ class LoginController {
       // 验证用户账号密码是否正确
       let checkUserPasswd = false
       let user = await User.findOne({ username: body.username })
-      if (user.password === body.password) {
+      if (await bcrypt.compare(body.password, user.password)) {
         checkUserPasswd = true
       }
       // mongoDB查库
       if (checkUserPasswd) {
         // 验证通过，返回Token数据
-        console.log('Hello login')
+        const userObj = user.toJson()
+        const arr = ['password', 'username', 'roles']
+        arr.map((item) => {
+          delete userObj[item]
+        })
         let token = jsonwebtoken.sign({ _id: 'zzx' }, config.JWT_SECRET, {
           expiresIn: '1d'
         })
         ctx.body = {
           code: 200,
+          data: userObj,
           token: token
         }
       } else {
