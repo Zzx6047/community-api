@@ -10,7 +10,7 @@ class UserController {
     const obj = await getJWTPayload(ctx.header.authorization)
     // 查询用户上一次签到记录
     const record = await SignRecord.findByUid(obj._id)
-    const user = await User.findById(obj._id)
+    // const user = await User.findById(obj._id)
     let newRecord = {}
     let result = ''
     // 判断签到逻辑
